@@ -14,7 +14,7 @@ The heatmap visualises the intensity of wind speed at different wind turbine loc
 To run this via the repo - Inside your VScode terminal, enter the following:
 
 ```bash
-    pip install 
+    pip install pandas streamlit folium streamlit-folium  
     streamlit run main.py
 ```
 ... and open the local http link provided.
