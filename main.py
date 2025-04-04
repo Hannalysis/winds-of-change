@@ -21,6 +21,7 @@ def generate_wind_power_data():
     # Wind speed data for each city
     wind_speed_data = {
         "city": [entry["city"] for entry in city_coords],
+        "date": [2024, 2024, 2024, 2024, 2024, 2024],
         "lat": [entry["lat"] for entry in city_coords],
         "lon": [entry["lon"] for entry in city_coords],
         "wind_speed": [11, 10, 25, 18, 15, 19]  # Real wind speed for London in one day 2024
@@ -65,4 +66,4 @@ m = create_folium_map(st.session_state.wind_power_data)
 st.write("### Heatmap of Wind Speed:")
 st_folium(m, width=700, height=500)  # Render the Folium map
 
-# run with streamlit run heatmap_test_final.py
+# run with streamlit run main.py
