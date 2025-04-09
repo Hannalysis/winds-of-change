@@ -1,2 +1,4 @@
 all_weather_data.csv
 location_date_winds_only.csv
+town_lat_lons.csv
+config.py
