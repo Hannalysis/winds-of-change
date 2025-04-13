@@ -1,4 +1,6 @@
 all_weather_data.csv
 location_date_winds_only.csv
 town_lat_lons.csv
+town_lat_lons_remainder.csv
+__pycache__
 config.py
