@@ -79,11 +79,11 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 <h4>Data successfully seeded</h4>
 
 <p align = "center">
-  <img align = "center" src="/readme-images/wind-data-seeded-sql.PNG" alt="pgadmin-wind-data-select-all-2807998-entries">
+  <img align = "center" src="/readme-images/wind-data-seeded-sql-scaled.PNG" alt="pgadmin-wind-data-select-all-2807998-entries">
 </p>
 
 <p align = "center">
-  <img align = "center" src="/readme-images/locations-seeded-sql.PNG" alt="pgadmin-location-data-select-all-501-entries">
+  <img align = "center" src="/readme-images/locations-seeded-sql-scaled.PNG" alt="pgadmin-location-data-select-all-501-entries">
 </p>
 
 ⚠️ <i>Note: Unfortunately due to the file size of the wind-data, the csvs are not available inside the repo at present</i>
