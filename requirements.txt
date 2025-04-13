@@ -1,0 +1,5 @@
+psycopg[binary]
+pandas
+folium
+streamlit
+streamlit_folium
