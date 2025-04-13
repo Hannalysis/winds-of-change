@@ -58,7 +58,7 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
     <img src="https://skillicons.dev/icons?i=python,vscode,postgresql&perline=8" />
   </a>
   <h4><u>Python Main modules:</u><br/><span style = "font-weight:lighter">Pandas, Streamlit, Folium</span></h4>
-  <h4><u>Python Helper Script modules:</u><br/><span style = "font-weight:lighter">Requests, CSV, Time</span></h4>
+  <h4><u>Python Helper Script modules:</u><br/><span style = "font-weight:lighter">Psycopg, Requests, CSV, Time</span></h4>
 </p>
 
 # <h3><u>MVP</u> - Completed: 2025/03/16</h3>
@@ -68,25 +68,39 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 - Functional geospatial map of the UK renders appropriately
 - Basic Style Formatting and rendered with Streamlit
 
-<h3><u>MS1</u> - Currently working on</h3>
+<h3><u>MS1</u> - Completed: 2025/04/13</h3>
 
-- Increasing the Dataset size; every major town/city within the UK and all wind speed information from a recent time period (ie 2024) therefore...
+- Increasing the Dataset size; every major town/city within the UK and all wind speed information therefore...
 - Analysing the raw data: Drop all unrelated weather columns, and check for any missing values
 - Utilise all town names to create a script to fetch geo data from an API and store in a local CSV; check for any unsuccessful entries, and re-fetch or manually obtain/delete entries as necessary
+- Ensure consistency between the two csv files whether information is related
 - Seed the winds and geo csv files into a local SQL database instance 
+
+<h4>Data successfully seeded</h4>
+
+<p align = "center">
+  <img align = "center" src="/readme-images/wind-data-seeded-sql.PNG" alt="pgadmin-wind-data-select-all-2807998-entries">
+</p>
+
+<p align = "center">
+  <img align = "center" src="/readme-images/locations-seeded-sql.PNG" alt="pgadmin-location-data-select-all-501-entries">
+</p>
+
+⚠️ <i>Note: Unfortunately due to the file size of the wind-data, the csvs are not available inside the repo at present</i>
 
 ## Future Milestones
 
 <h3><u>MS2</u></h3>
 
-- Increasing the Dataset size; every major town/city within the UK and all wind speed information
-- Utilising the data effectively; avg vs highest (visual toggle)
-- An additional layer (toggle) to show the current wind farm locations 
+- Sanity checking the data inside the SQL db; that both the foreign key relationships are intact, and that the data is accurate and consistent
+- Creating relevant SQL queries that can be visualised with both the df and folium to display on the front-end
+
 
 <h3><u>MS3</u></h3>
 
+- An additional layer (toggle) to show the current wind farm locations 
 - Increasing the Dataset scope: Locating data for villages, and offshore locations around the UK
-- Increasing the Dataset size to account for more years for a more accurate prediction for the future wind conditions
+- Increasing the Dataset size to account for current and accumulative data to aid for predictions for future wind conditions
 - Implement a machine learning library (ie scikit) to aid future wind speed predictions 
 
 ## Author
