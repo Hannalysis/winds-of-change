@@ -57,8 +57,8 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=python,vscode,postgresql&perline=8" />
   </a>
-  <h4><u>Python Main modules:</u><br/>Pandas, Streamlit, Folium</h4>
-  <h4><u>Python Helper Script modules:</u><br/>Requests, CSV, Time</h4>
+  <h4><u>Python Main modules:</u><br/><span style = "font-weight:lighter">Pandas, Streamlit, Folium</span></h4>
+  <h4><u>Python Helper Script modules:</u><br/><span style = "font-weight:lighter">Requests, CSV, Time</span></h4>
 </p>
 
 # <h3><u>MVP</u> - Completed: 2025/03/16</h3>
