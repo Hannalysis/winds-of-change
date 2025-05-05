@@ -1,7 +1,7 @@
 <h1 align = "center">Visualising Wind Power Potential in the UK</h1>
 
 <p align = "center"><b>Overview</b>: This is a geospatial heatmap showcasing the wind speed (in km/h) at various locations across England in 2024. 
-The heatmap visualises the intensity of wind speed at different wind turbine locations.</p>
+The heatmap aims to visualise the intensity of wind speed vs current wind turbine locations.</p>
 
 <p align = "center">
   <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk">
