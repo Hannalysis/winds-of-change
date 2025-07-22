@@ -3,8 +3,8 @@ import pandas as pd
 from config import PG_PW, PG_USER 
 
 # File paths
-LOCATIONS_CSV = "seed_data/town_lat_lons.csv"
-WIND_DATA_CSV = "seed_data/location_date_winds_only.csv"
+LOCATIONS_CSV = "../data/processed/seed_data/town_lat_lons.csv"
+WIND_DATA_CSV = "../data/processed/seed_data/location_date_winds_only.csv"
 
 # Connection details
 conn_info = f"dbname=winds-of-change user={PG_USER} password={PG_PW} host=localhost port=5432"
@@ -19,6 +19,7 @@ wind_df['location_name'] = wind_df['location_name'].astype(str).str.strip()
 
 with psycopg.connect(conn_info) as conn:
     with conn.cursor() as cur:
+        
         # Insert locations
         for _, row in locations_df.iterrows():
             cur.execute("""
@@ -53,4 +54,4 @@ with psycopg.connect(conn_info) as conn:
 
         conn.commit()  # Final commit to catch any remaining rows
 
-print("✅ Seeding complete.")
+print("✅ Seeding db complete.")

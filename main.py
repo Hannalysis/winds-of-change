@@ -6,6 +6,7 @@ from folium.plugins import HeatMap
 from streamlit_folium import st_folium 
 
 # Function to generate wind power data (cached so it's not regenerated every time)
+
 @st.cache_data
 def generate_wind_power_data():
     # Generate some example data for locations in England
@@ -24,14 +25,16 @@ def generate_wind_power_data():
         "date": [2024, 2024, 2024, 2024, 2024, 2024],
         "lat": [entry["lat"] for entry in city_coords],
         "lon": [entry["lon"] for entry in city_coords],
-        "wind_speed": [11, 10, 25, 18, 15, 19]  # Real wind speed for London in one day 2024
+        "wind_speed": [11, 10, 25, 18, 15, 19]
     }
 
     return pd.DataFrame(wind_speed_data)
 
-# Function to generate the folium map (cached so it's not regenerated every time)
+# Function to generate the folium map
+
 @st.cache_data
 def create_folium_map(df):
+
     # Create a Folium map centered around England
     m = folium.Map(location=[52.3550, -1.1743], zoom_start=6)  # Approximate center of England
 
@@ -43,7 +46,8 @@ def create_folium_map(df):
 
     return m
 
-# Streamlit app
+# --- Streamlit app --- #
+
 st.title("Geospatial Heatmap of Wind Speed vs Optimal Wind Turbine Usage in England (2024)")
 
 st.write("""
@@ -67,3 +71,5 @@ st.write("### Heatmap of Wind Speed:")
 st_folium(m, width=700, height=500)  # Render the Folium map
 
 # run with streamlit run main.py
+
+# ----------------------#

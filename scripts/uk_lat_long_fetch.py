@@ -541,9 +541,9 @@ towns = ['Abengourou',
 'Wyndham', 
 'Ynysybwl',]
 
-# Storing the results to a local CSV under town_lat_lons.csv
+# Storing the results to a local CSV under town_lat_lons.csv within the processed folder
 
-with open('town_lat_lons.csv', mode='w', newline='') as file:
+with open('../data/processed/seed_data/town_lat_lons.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Town', 'Latitude', 'Longitude'])
 
