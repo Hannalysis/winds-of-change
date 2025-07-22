@@ -2,18 +2,18 @@ import psycopg
 import pandas as pd
 from config import PG_PW, PG_USER 
 
-# 📁 File paths
+# File paths
 LOCATIONS_CSV = "seed_data/town_lat_lons.csv"
 WIND_DATA_CSV = "seed_data/location_date_winds_only.csv"
 
-# 🔌 Connection details
+# Connection details
 conn_info = f"dbname=winds-of-change user={PG_USER} password={PG_PW} host=localhost port=5432"
 
-# 📄 Load data
+# Load data
 locations_df = pd.read_csv(LOCATIONS_CSV)
 wind_df = pd.read_csv(WIND_DATA_CSV)
 
-# 🧼 Clean string fields for consistent matching
+# Clean string fields for consistent matching
 locations_df['location_name'] = locations_df['location_name'].astype(str).str.strip()
 wind_df['location_name'] = wind_df['location_name'].astype(str).str.strip()
 

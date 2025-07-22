@@ -70,11 +70,11 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 
 <h3><u>MS1</u> - Completed: 2025/04/13</h3>
 
-- Increasing the Dataset size; every major town/city within the UK and all wind speed information therefore...
-- Analysing the raw data: Drop all unrelated weather columns, and check for any missing values
-- Utilise all town names to create a script to fetch geo data from an API and store in a local CSV; check for any unsuccessful entries, and re-fetch or manually obtain/delete entries as necessary
+- Increasing the Dataset size; include every major town/city within the UK and all wind speed information
+- Transforming the raw data: Dropping all unrelated weather columns, and checking for any missing values
+- Utilise all town names to create a script to fetch geo data from an API to enrich the data and store in a local CSV; check for any unsuccessful entries, and re-fetch or manually obtain entries as necessary
 - Ensure consistency between the two csv files whether information is related
-- Seed the winds and geo csv files into a local SQL database instance 
+- Seed the winds and geo csv files and load them into a local SQL database instance 
 
 <h4>Data successfully seeded</h4>
 
@@ -86,7 +86,7 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
   <img align = "center" src="/readme-images/locations-seeded-sql-scaled.PNG" alt="pgadmin-location-data-select-all-501-entries">
 </p>
 
-⚠️ <i>Note: Unfortunately due to the file size of the wind-data, the csvs are not available inside the repo at present</i>
+⚠️ <i>Note: Due to the file size of the wind-data, that csv (and the raw files) are not available inside the repo at present</i>
 
 ## Future Milestones
 

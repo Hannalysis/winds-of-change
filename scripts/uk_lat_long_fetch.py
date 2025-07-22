@@ -541,12 +541,14 @@ towns = ['Abengourou',
 'Wyndham', 
 'Ynysybwl',]
 
-# Open a CSV file to store the results
+# Storing the results to a local CSV under town_lat_lons.csv
+
 with open('town_lat_lons.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Town', 'Latitude', 'Longitude'])
 
-    # Loop through the towns and get latitudes and longitudes
+    # Looping through the towns and get latitudes and longitudes
+
     for town in towns:
         lat, lon = get_lat_lon_nominatim(town)
         if lat and lon:
@@ -555,7 +557,6 @@ with open('town_lat_lons.csv', mode='w', newline='') as file:
         else:
             print(f"{town}: No results found")
         
-    # Add a 2-second delay between requests to avoid overloading the API
         time.sleep(2)
 
 print("Latitudes and Longitudes have been saved to 'town_lat_lons.csv'.")
