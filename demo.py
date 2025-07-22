@@ -70,6 +70,6 @@ m = create_folium_map(st.session_state.wind_power_data)
 st.write("### Heatmap of Wind Speed:")
 st_folium(m, width=700, height=500)  # Render the Folium map
 
-# run with streamlit run main.py
+# run with streamlit run demo.py
 
 # ----------------------#

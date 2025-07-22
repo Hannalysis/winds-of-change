@@ -17,7 +17,9 @@ The heatmap visualises the intensity of wind speed at different wind turbine loc
 - [Documentation](#documentation)
   - [Supplements](#project-supplements)
   - [Tech Stack](#tech-stack-including)
+  - [ETL Pipeline](#etl-pipeline)
 - [Progress](#mvp---completed-20250316)
+  - [Current Milestone](#ms15---in-progress)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
 
@@ -25,11 +27,24 @@ The heatmap visualises the intensity of wind speed at different wind turbine loc
 
 ## Installation
 
-To run the demo MVP via the repo - Inside your VScode terminal, enter the following:
+To run the demo MVP via the repo - Inside your VSCode terminal, enter the following:
+
+```bash windows 
+    py -m venv venv
+    venv\Scripts\Activate.ps1
+```
+
+Then, install the required dependencies...
+
+```bash
+    pip install -r requirements.txt
+```
+
+...run with:
 
 ```bash
     pip install pandas streamlit folium streamlit-folium  
-    streamlit run main.py
+    streamlit run demo.py
 ```
 ... and open the local http link provided.
 
@@ -37,7 +52,7 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 
 ## My Brief  
 
-<i>The goal of this project is to explore advanced Python-based data visualisation libraries while addressing a subject I am deeply passionate about: renewable energy. Specifically, I aim to analyse the effectiveness of current wind farm locations in the UK, assessing whether these sites are optimally utilised. Additionally, I will investigate potential areas for new wind farm development, using data-driven insights to inform future decisions on sustainable energy deployment.</i>
+<i>The goal of this project is to explore advanced Python-based data visualisation libraries while addressing a subject I am passionate about: renewable energy. Specifically, I aim to analyse the effectiveness of current wind farm locations in the UK, assessing whether these sites are optimally utilised. Additionally, I will investigate potential areas for new wind farm development, using data-driven insights to inform future decisions on sustainable energy deployment.</i>
 
 ------------
 
@@ -61,6 +76,13 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
   <h4><u>Python Helper Script modules:</u><br/><span style = "font-weight:lighter">Psycopg, Requests, CSV, Time</span></h4>
 </p>
 
+# <h3><u>ETL Pipeline</u></h3>  
+
+1. Raw dataset (obtained from Kaggle), save and reside in: `data/raw/all_weather_data.csv`
+2. Filter only useful columns (<i>filter_weather_data.py</i>) → `data/processed/location_date_winds_only.csv`
+3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/town_lat_lons.csv`
+4. Seed processed data files into a local postgres database (<i>seed.py</i>)
+
 # <h3><u>MVP</u> - Completed: 2025/03/16</h3>
 
 - Basic small data sample of wind speed (last recorded end of 2024) for major cities in the UK 
@@ -70,11 +92,11 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 
 <h3><u>MS1</u> - Completed: 2025/04/13</h3>
 
-- Increasing the Dataset size; include every major town/city within the UK and all wind speed information
-- Transforming the raw data: Dropping all unrelated weather columns, and checking for any missing values
-- Utilise all town names to create a script to fetch geo data from an API to enrich the data and store in a local CSV; check for any unsuccessful entries, and re-fetch or manually obtain entries as necessary
-- Ensure consistency between the two csv files whether information is related
-- Seed the winds and geo csv files and load them into a local SQL database instance 
+- Increased the Dataset size; included every major town/city within the UK and all wind speed information
+- Transformed the raw data: Dropped all unrelated weather columns, and checked for any missing values
+- Utilised all town names to create a script to fetch geo data from an API to enrich the data and store in a local CSV; checked for any unsuccessful entries, and re-fetched or manually obtained entries as necessary
+- Ensured consistency between the two csv files whether information is related
+- Seeded the winds and geo csv files and load them into a local SQL database instance 
 
 <h4>Data successfully seeded</h4>
 
@@ -88,19 +110,25 @@ To run the demo MVP via the repo - Inside your VScode terminal, enter the follow
 
 ⚠️ <i>Note: Due to the file size of the wind-data, that csv (and the raw files) are not available inside the repo at present</i>
 
+# <h3><u>MS1.5</u> - In Progress</h3>
+
+- ✔️ Refactor the project hierarchy
+- ✔️ Adjust the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
+- Add CLI implementation for the ETL process
+
 ## Future Milestones
 
 <h3><u>MS2</u></h3>
 
-- Sanity checking the data inside the SQL db; that both the foreign key relationships are intact, and that the data is accurate and consistent
-- Creating relevant SQL queries that can be visualised with both the df and folium to display on the front-end
+- Sanity check the data inside the SQL db; that both the foreign key relationships are intact, and that the data is accurate and consistent
+- Create relevant SQL queries that can be visualised with dfs and folium to display on the front-end
 
 
 <h3><u>MS3</u></h3>
 
 - An additional layer (toggle) to show the current wind farm locations 
-- Increasing the Dataset scope: Locating data for villages, and offshore locations around the UK
-- Increasing the Dataset size to account for current and accumulative data to aid for predictions for future wind conditions
+- Increase the Dataset scope: Locating data for villages, and offshore locations around the UK
+- Increase the Dataset size to account for current and accumulative data to aid for predictions for future wind conditions
 - Implement a machine learning library (ie scikit) to aid future wind speed predictions 
 
 ## Author

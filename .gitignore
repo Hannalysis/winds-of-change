@@ -4,4 +4,4 @@ town_lat_lons.csv
 town_lat_lons_remainder.csv
 __pycache__/
 config.py
-venv
+venv/
