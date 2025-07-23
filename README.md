@@ -43,7 +43,6 @@ Then, install the required dependencies...
 ...run with:
 
 ```bash
-    pip install pandas streamlit folium streamlit-folium  
     streamlit run demo.py
 ```
 ... and open the local http link provided.
@@ -79,8 +78,8 @@ Then, install the required dependencies...
 # <h3><u>ETL Pipeline</u></h3>  
 
 1. Raw dataset (obtained from Kaggle), save and reside in: `data/raw/all_weather_data.csv`
-2. Filter only useful columns (<i>filter_weather_data.py</i>) → `data/processed/location_date_winds_only.csv`
-3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/town_lat_lons.csv`
+2. Filter only useful columns (<i>filter_weather_data.py</i>) → `data/processed/seed_data/location_date_winds_only.csv`
+3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/seed_data/town_lat_lons.csv`
 4. Seed processed data files into a local postgres database (<i>seed.py</i>)
 
 # <h3><u>MVP</u> - Completed: 2025/03/16</h3>
