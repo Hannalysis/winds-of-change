@@ -4,7 +4,7 @@
 The heatmap aims to visualise the intensity of wind speed vs current wind turbine locations.</p>
 
 <p align = "center">
-  <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk">
+  <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk" width = "400">
 </p>
 
 ------------
@@ -19,7 +19,7 @@ The heatmap aims to visualise the intensity of wind speed vs current wind turbin
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
 - [Progress](#mvp---completed-20250316)
-  - [Current Milestone](#ms15---in-progress)
+  - [Current Milestone](#ms15---completed-20250722)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
 
@@ -109,25 +109,26 @@ Then, install the required dependencies...
 
 ⚠️ <i>Note: Due to the file size of the wind-data, that csv (and the raw files) are not available inside the repo at present</i>
 
-# <h3><u>MS1.5</u> - In Progress</h3>
+# <h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
 
-- ✔️ Refactor the project hierarchy
-- ✔️ Adjust the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
-- Add CLI implementation for the ETL process
+- Refactored the project hierarchy
+- Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
 
 ## Future Milestones
 
 <h3><u>MS2</u></h3>
 
-- Sanity check the data inside the SQL db; that both the foreign key relationships are intact, and that the data is accurate and consistent
-- Create relevant SQL queries that can be visualised with dfs and folium to display on the front-end
-
+- Sanity check the transformed data within the database; add data validation
+- CLI implementation 
+- Create relevant aggregated queries that can be visualised with dfs and folium to display on the front-end
 
 <h3><u>MS3</u></h3>
 
 - An additional layer (toggle) to show the current wind farm locations 
 - Increase the Dataset scope: Locating data for villages, and offshore locations around the UK
-- Increase the Dataset size to account for current and accumulative data to aid for predictions for future wind conditions
+
+<h3><u>MS4</u></h3>
+
 - Implement a machine learning library (ie scikit) to aid future wind speed predictions 
 
 ## Author
