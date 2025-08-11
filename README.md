@@ -4,7 +4,7 @@
 The heatmap aims to visualise the intensity of wind speed vs current wind turbine locations.</p>
 
 <p align = "center">
-  <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk">
+  <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk" width = "300">
 </p>
 
 ------------
