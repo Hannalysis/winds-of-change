@@ -2,7 +2,7 @@
 
 <p align = "center"><b>Exploration 1</b>: What are the highest wind speeds available from this dataset? </p> <br/>
 
-Starting with the initial query, by viewing everything in the wind data table:
+Starting with the initial query, by viewing a small amount of records in the wind data table:
 
 ```sql
 SELECT * 
