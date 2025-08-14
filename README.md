@@ -1,4 +1,6 @@
-<h1 align = "center">Visualising Wind Power Potential in the UK</h1>
+<h1 align = "center">Winds of Change</h1>
+
+<h2 align = "center">Exploring & Visualising Wind Power Potential in the UK</h2>
 
 <p align = "center"><b>Overview</b>: This is a geospatial heatmap showcasing the wind speed (in km/h) at various locations across England in 2024. 
 The heatmap aims to visualise the intensity of wind speed vs current wind turbine locations.</p>
@@ -19,7 +21,7 @@ The heatmap aims to visualise the intensity of wind speed vs current wind turbin
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
 - [Progress](#mvp---completed-20250316)
-  - [Current Milestone](#ms15---completed-20250722)
+  - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
 
@@ -109,18 +111,23 @@ Then, install the required dependencies...
 
 ⚠️ <i>Note: Due to the file size of the wind-data, that csv (and the raw files) are not available inside the repo at present</i>
 
-# <h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
+<h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
 
 - Refactored the project hierarchy
 - Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
 
-## Future Milestones
 
-<h3><u>MS2</u></h3>
+# <h3><u>MS2 - In progress</u></h3>
 
-- Sanity check the transformed data within the database; add data validation
+- ✔️ Sanity check the transformed data within the database
+- ⏳🚧 Initial explorations, and visualisations  
+  - Highest Wind Speed | <i><a href="./explorations/highest-wind-speed/hws-query-process.md">query process</a></i>
+- Sanity check the transformed data within the database
+- Add data validation
 - CLI implementation 
 - Create relevant aggregated queries that can be visualised with dfs and folium to display on the front-end
+
+## Future Milestones
 
 <h3><u>MS3</u></h3>
 
