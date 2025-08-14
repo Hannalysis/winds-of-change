@@ -1,6 +1,6 @@
 <h1 align = "center">Highest Wind Speed</h1>
 
-<p align = "center"><b>Exploration 1</b>: What are the highest wind speeds available from this dataset? </p>
+<p align = "center"><b>Exploration 1</b>: What are the highest wind speeds available from this dataset? </p> <br/>
 
 Starting with the initial query, by viewing everything in the wind data table:
 
@@ -166,6 +166,10 @@ ORDER BY wind_speed DESC, high_wind_speed_count DESC;
 ```
 <i>Query execution time</i> <b>0.1</b> <i>sec </i>
 
+<p align = "center">
+  <img align = "center" src="./hws-images/initial-explore-and-vis-table1.PNG" alt="pgAdmin-hws-table1-vis" width = "500">
+</p>
+
 ---
 
 I realised here that the query I had entered was much faster even considering the added window function, so I decided to record all execution times. This made me realise that execution time differences depended on where I had placed the wind speed filter; inside the subquery.
@@ -192,6 +196,11 @@ FROM (
 WHERE high_wind_speed_count > 1
 ORDER BY wind_speed DESC, high_wind_speed_count DESC;
 ```
+<i>Query execution time</i> <b>0.1</b> <i>sec </i>
+
+<p align = "center">
+  <img align = "center" src="./hws-images/initial-explore-and-vis-table2.PNG" alt="pgAdmin-hws-table2-vis" width = "500">
+</p>
 
 ---
 
