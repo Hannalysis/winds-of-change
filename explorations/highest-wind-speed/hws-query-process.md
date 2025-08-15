@@ -176,15 +176,14 @@ I realised here that the query I had entered was much faster even considering th
 
 I executed `EXPLAIN(ANALYZE, VERBOSE)` and it showed that my subquery from the previous execution only filtered 474 rows before the majority of the rest of the query…compared to 936k from this most recent query!
 
-Anyway, final query for this question, lets say we only want to look at ones that actually had more than one instance of very high wind speed:
+Anyway, final query for this question, lets say we only want to look at locations that actually had more than one instance of very high wind speed. We also need to omit the date column as it's now misleading, and to give an alias to wind_speed for this query's legibility:
 
 ```sql
 SELECT *
 FROM (
     SELECT DISTINCT ON (location_name)
         location_name,
-        date,
-        wind_speed,
+        wind_speed AS highest_wind_speed,
         latitude,
         longitude,
         COUNT(*) OVER (PARTITION BY location_name) AS high_wind_speed_count
@@ -194,7 +193,7 @@ FROM (
     ORDER BY location_name, wind_speed DESC
 ) AS top_wind_speed_per_location
 WHERE high_wind_speed_count > 1
-ORDER BY wind_speed DESC, high_wind_speed_count DESC;
+ORDER BY highest_wind_speed DESC, high_wind_speed_count DESC;
 ```
 <i>Query execution time</i> <b>0.1</b> <i>sec </i>
 
