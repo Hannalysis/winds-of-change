@@ -1,13 +1,16 @@
-import psycopg
+# import psycopg
 from sqlalchemy import create_engine
-import pandas as pd
+# import pandas as pd
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-
 # Ensuring directory pathing is consistent
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-CSV_PATH = PROJECT_ROOT / "data" / "processed" / "queries" / "highest_wind_speed.csv"
+import sys
+sys.path.append(str(PROJECT_ROOT))
+from utils import extract_to_csv
+
+CSV_PATH = PROJECT_ROOT / "data" / "processed" / "queries" / "highest_wind_speeds.csv"
 
 # Getting the db query ready
 load_dotenv()
@@ -33,10 +36,5 @@ WHERE high_wind_speed_count > 1
 ORDER BY highest_wind_speed DESC, high_wind_speed_count DESC;
 """
 
-
-def extract_to_csv():
-    df = pd.read_sql(QUERY, engine)
-    df.to_csv(CSV_PATH, index=False)
-    print(f"Query CSV saved to {CSV_PATH}")
-
-extract_to_csv()
+# Saving to a local file for visualisation
+extract_to_csv(QUERY, engine, CSV_PATH)
