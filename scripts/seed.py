@@ -1,6 +1,12 @@
 import psycopg
 import pandas as pd
-from config import PG_PW, PG_USER 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PG_USER = os.getenv("PG_USER")
+PG_PW = os.getenv("PG_PW")
 
 # File paths
 LOCATIONS_CSV = "../data/processed/seed_data/town_lat_lons.csv"

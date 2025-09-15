@@ -1,7 +1,12 @@
 import requests
 import csv
 import time
-from config import USER_AGENT 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+USER_AGENT = os.getenv("USER_AGENT")
 
 def get_lat_lon_nominatim(location_name):
     base_url = f'https://nominatim.openstreetmap.org/search?q={location_name}&format=json&limit=1'
