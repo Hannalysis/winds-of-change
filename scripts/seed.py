@@ -7,13 +7,14 @@ load_dotenv()
 
 PG_USER = os.getenv("PG_USER")
 PG_PW = os.getenv("PG_PW")
+DB_NAME = os.getenv("DB_NAME")
 
 # File paths
 LOCATIONS_CSV = "../data/processed/seed_data/town_lat_lons.csv"
 WIND_DATA_CSV = "../data/processed/seed_data/location_date_winds_only.csv"
 
 # Connection details
-conn_info = f"dbname=winds-of-change user={PG_USER} password={PG_PW} host=localhost port=5432"
+conn_info = f"dbname={DB_NAME} user={PG_USER} password={PG_PW} host=localhost port=5432"
 
 # Load data
 locations_df = pd.read_csv(LOCATIONS_CSV)
