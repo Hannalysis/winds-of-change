@@ -6,9 +6,8 @@ from pathlib import Path
 # Ensuring directory pathing is consistent
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-CSV_PATH = PROJECT_ROOT / "data" / "processed" / "queries" / "highest_wind_speeds.csv"
-
 # Loading the wind data 
+CSV_PATH = PROJECT_ROOT / "data" / "processed" / "queries" / "highest_wind_speeds.csv"
 df = pd.read_csv(CSV_PATH)
 
 # --- Streamlit layout ---
@@ -22,7 +21,7 @@ map_center = [df["latitude"].mean(), df["longitude"].mean()]
 with col1:
     m = folium.Map(location=map_center, zoom_start=6.25)
 
-    # Where the circle borders are darker for higher wind speed occurences
+    # Where the circle borders are darker for higher wind speed occurrences
     def get_outline_colour(hws_count):
         if hws_count == 2:
             return "gray"
