@@ -5,9 +5,9 @@
 <p align = "center"><b>Overview</b>: This project is a data pipeline that analyses UK wind speed data, and visualises the outputs using Folium. </p>
 
 <p align = "center">
-  <img src= "/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width="45%" style="margin-right:12px;"  />
+  <img src= "/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width="50%" style="margin-right:12px;"  />
   <img src="/readme-images/init-vis-zoomed-in-map-markers-ex.jpg"
-  alt="init-exploration-zoomed-in-example-hws" width="45%" />
+  alt="init-exploration-zoomed-in-example-hws" width="40%" />
 </p>
 
 The overall intent will include additional layers such as current wind farm locations, and wind predictions to suggest where future farms could potentially be built. 
