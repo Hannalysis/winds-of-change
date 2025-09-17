@@ -1,11 +1,16 @@
-<h1 align = "center">Visualising Wind Power Potential in the UK</h1>
+<h1 align = "center">Winds of Change</h1>
 
-<p align = "center"><b>Overview</b>: This is a geospatial heatmap showcasing the wind speed (in km/h) at various locations across England in 2024. 
-The heatmap aims to visualise the intensity of wind speed vs current wind turbine locations.</p>
+<h2 align = "center">A Data-Driven Pipeline to Explore UK Wind Power Potential</h2>
+
+<p align = "center"><b>Overview</b>: This project is a data pipeline that analyses UK wind speed data, and visualises the outputs using Folium. </p>
 
 <p align = "center">
-  <img align = "center" src="/readme-images/winds-of-change.PNG" alt="df-city-loc-wind-speed-and-geospatial-heatmap-of-uk" width = "400">
+  <img src= "/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width="45%" style="margin-right:12px;"  />
+  <img src="/readme-images/init-vis-zoomed-in-map-markers-ex.jpg"
+  alt="init-exploration-zoomed-in-example-hws" width="45%" />
 </p>
+
+The overall intent will include additional layers such as current wind farm locations, and wind predictions to suggest where future farms could potentially be built. 
 
 ------------
 
@@ -19,7 +24,7 @@ The heatmap aims to visualise the intensity of wind speed vs current wind turbin
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
 - [Progress](#mvp---completed-20250316)
-  - [Current Milestone](#ms15---completed-20250722)
+  - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
 
@@ -27,23 +32,32 @@ The heatmap aims to visualise the intensity of wind speed vs current wind turbin
 
 ## Installation
 
-To run the demo MVP via the repo - Inside your VSCode terminal, enter the following:
+To follow through with the overall data process, please navigate to [ETL Pipeline](#etl-pipeline)
+
+Else if you'd like to run the initial visualisation locally via the repo, feel free to follow the steps below. </br>
+Inside your VSCode terminal, enter the following:
 
 ```bash windows 
     py -m venv venv
     venv\Scripts\Activate.ps1
 ```
 
-Then, install the required dependencies...
+Then, install the required dependencies:
 
 ```bash
     pip install -r requirements.txt
 ```
 
-...run with:
+Change the directory with this command:
 
 ```bash
-    streamlit run demo.py
+    cd .\explorations\highest-wind-speeds\
+```
+
+And run with:
+
+```bash
+    streamlit run .hws_visualisation.py
 ```
 ... and open the local http link provided.
 
@@ -69,10 +83,10 @@ Then, install the required dependencies...
 
 <p align="left">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,vscode,postgresql&perline=8" />
+    <img src="https://skillicons.dev/icons?i=python,postgresql,vscode&perline=8" />
   </a>
-  <h4><u>Python Main modules:</u><br/><span style = "font-weight:lighter">Pandas, Streamlit, Folium</span></h4>
-  <h4><u>Python Helper Script modules:</u><br/><span style = "font-weight:lighter">Psycopg, Requests, CSV, Time</span></h4>
+  <h4><u>Main modules:</u><br/><span style = "font-weight:lighter">pandas, sqlalchemy, folium, streamlit, dotenv, os</span></h4>
+  <h4><u>Script modules:</u><br/><span style = "font-weight:lighter">psycopg, requests, pathlib, csv, time</span></h4>
 </p>
 
 # <h3><u>ETL Pipeline</u></h3>  
@@ -107,20 +121,24 @@ Then, install the required dependencies...
   <img align = "center" src="/readme-images/locations-seeded-sql-scaled.PNG" alt="pgadmin-location-data-select-all-501-entries">
 </p>
 
-⚠️ <i>Note: Due to the file size of the wind-data, that csv (and the raw files) are not available inside the repo at present</i>
+⚠️ <i>Note: Due to the file size of the wind-data, that particular csv (and the raw files) are not available inside the repo</i>
 
-# <h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
+<h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
 
 - Refactored the project hierarchy
 - Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
 
+
+# <h3><u>MS2 - In progress</u></h3>
+
+- ✔️ Sanity check the transformed data within the database
+- 🚧 Explorations & visualisations  
+  - ✔️ Highest Wind Speed | <i><a href="./explorations/highest-wind-speeds/hws-query-process.md">Query Process</a></i> | 🗺️ Visualisation Result (to run, refer to [Installation](#installation))
+  - 🚧 Highest Avg Wind Speed (per region - tbc) | ⏳ <i>Query Process</i>  | ⏳ Visualisation Result 
+- Add data validation
+- CLI implementation
+
 ## Future Milestones
-
-<h3><u>MS2</u></h3>
-
-- Sanity check the transformed data within the database; add data validation
-- CLI implementation 
-- Create relevant aggregated queries that can be visualised with dfs and folium to display on the front-end
 
 <h3><u>MS3</u></h3>
 
