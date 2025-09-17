@@ -4,13 +4,9 @@
 
 <p align = "center"><b>Overview</b>: This project is a data pipeline that analyses UK wind speed data, and visualises the outputs using Folium. </p>
 
-<!-- <p align = "center">
-  <img align = "center" src="/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width = "400">
-</p> -->
-
 <p align = "center">
   <img src= "/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width="45%" style="margin-right:12px;"  />
-  <img src="init-vis-zoomed-in-map-markers-ex.jpg"
+  <img src="/readme-images/init-vis-zoomed-in-map-markers-ex.jpg"
   alt="init-exploration-zoomed-in-example-hws" width="45%" />
 </p>
 
