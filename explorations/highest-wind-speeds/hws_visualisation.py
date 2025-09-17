@@ -1,3 +1,8 @@
+""" 
+This visualisation is pulled from the csv created in 'prepare_hws_vis.py', which
+uses the final query defined from the 'hws-query-process.md' document.
+"""
+
 import streamlit as st
 import pandas as pd
 import folium

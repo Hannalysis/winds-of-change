@@ -203,7 +203,9 @@ ORDER BY highest_wind_speed DESC, high_wind_speed_count DESC;
 
 ---
 
-In summary, utilising these particular filters we have 12 towns that could be our main focus.
+<a href="./hws_visualisation.py">Visualisation Result Script</a>
+
+In summary, utilising these particular filters we have 12 towns that could be our main focus (all located in Scotland). 
 
 However, I did notice that during this entire process we only ever got results from 2023.
 Also, just because these towns reached high speeds, does not mean they have a better wind speed average throughout the year.
