@@ -7,7 +7,7 @@
 <p align = "center">
   <img src= "/readme-images/init-vis-top-half.jpg" alt="init-exploration-visualisation-hws" width="50%" style="margin-right:12px;"  />
   <img src="/readme-images/init-vis-zoomed-in-map-markers-ex.jpg"
-  alt="init-exploration-zoomed-in-example-hws" width="40%" />
+  alt="init-exploration-zoomed-in-example-hws" width="50%" />
 </p>
 
 The overall intent will include additional layers such as current wind farm locations, and wind predictions to suggest where future farms could potentially be built. 
