@@ -17,7 +17,7 @@ df = pd.read_csv(CSV_PATH)
 
 # --- Streamlit layout ---
 st.title("~~~ Highest Wind Speed Map ~~~")
-st.markdown("Locations where wind speeds of 60km/h and above, occurenced more than once")
+st.markdown("Locations where wind speeds of 60km/h and above, occurred more than once")
 col1, col2 = st.columns([4, 1]) 
 
 # --- Create the folium map ---
@@ -79,7 +79,7 @@ with col2:
 
     **Border Colour**  
     *Grey -> Black*  
-    (2+ high wind speed occurences)
+    (2+ high wind speed occurrences)
     ** **
     """)
 
