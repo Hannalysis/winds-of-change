@@ -20,6 +20,24 @@ def check_nulls(df):
 def check_duplicates(df):
     return df.duplicated().sum()
 
+def check_location_format(df, column):
+    known_uk_exceptions = {
+        "Knight's Hill", 
+        "Neal's Green", 
+        "No Man's Heath", 
+        "Page's Green", 
+        "Regent's Park", 
+        "St John's Wood", 
+        "St Luke's", 
+        "Ty'n-Y-Garn"
+    }
+
+    non_title_case = df[~df[column].astype(str).str.istitle()][column].unique()
+
+    # Remove known UK exceptions from the title case checker
+    invalid_format = [name for name in non_title_case if name not in known_uk_exceptions]
+    return list(invalid_format)
+
 # -----------------------------------
 
 # Execute each validation for locations
@@ -32,6 +50,9 @@ print(check_nulls(locations_df))
 
 print("\n🧪 Duplicate Rows:")
 print(f"Total duplicates: {check_duplicates(locations_df)}")
+
+print("\n🧪 Format Checks:")
+print(f"Location_names not title cased: {check_location_format(locations_df, 'location_name')}")
 
 # Execute each validation for wind_data
 
