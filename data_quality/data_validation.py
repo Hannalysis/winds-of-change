@@ -10,6 +10,7 @@ DB_URL = os.getenv("DB_URL")
 # Get tables
 engine = create_engine(DB_URL)
 locations_df = pd.read_sql_table('locations', engine)
+wind_df = pd.read_sql_table('wind_data', engine)
 
 # --- Data Validation Functions --- #
 
@@ -31,3 +32,14 @@ print(check_nulls(locations_df))
 
 print("\n🧪 Duplicate Rows:")
 print(f"Total duplicates: {check_duplicates(locations_df)}")
+
+# Execute each validation for wind_data
+
+print("-" * 15)
+print("Wind_Data table")
+print("-" * 15)
+print("🧪 Null Counts:")
+print(check_nulls(wind_df))
+
+print("\n🧪 Duplicate Rows:")
+print(f"Total duplicates: {check_duplicates(wind_df)}")
