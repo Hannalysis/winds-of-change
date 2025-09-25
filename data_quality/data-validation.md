@@ -2,8 +2,8 @@
 
 ## Sweep 1 (2025-09-25)
 ### Issues encountered:
-- Latitude: 61 values outside expected UK range (49–61)
-- Longitude: 73 values outside expected UK range (-8 to 2)
+- Latitude: 61 values outside of expected UK range (49 to 61)
+- Longitude: 73 values outside of expected UK range (-8 to 2)
 
 ### Actions taken:
 - Logged for review
