@@ -2,7 +2,14 @@ from sqlalchemy import create_engine
 import pandas as pd
 import os
 import logging
+from datetime import datetime
 from dotenv import load_dotenv
+from pathlib import Path
+import sys
+
+# Ensuring directory pathing is consistent
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(PROJECT_ROOT))
 
 # Grab local .env info
 load_dotenv()
@@ -63,8 +70,13 @@ def check_wind_speed(df, column):
 
 # Setup for logging
 
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+logs_dir = PROJECT_ROOT / "data_quality" / "logs" 
+logs_dir.mkdir(parents=True, exist_ok=True) 
+log_file = logs_dir / f"data_validation_{timestamp}.log"
+
 logging.basicConfig(
-    filename='data_validation.log',           
+    filename=str(log_file),           
     level=logging.INFO,                       
     format='%(asctime)s - %(levelname)s - %(message)s',  
     datefmt='%Y-%m-%d %H:%M:%S'             
@@ -75,10 +87,15 @@ logging.basicConfig(
 def log_if_invalid(result, label):
     if result is not None:
         logging.warning(
-            "\n=== Invalid data: %s ===\n%s\n===========================",
+            "\n=== Invalid data: %s (count: %d) ===\n%s\n===========================",
             label,
+            len(result),
             result.to_string(index=False)
         )
+    else:
+        logging.info(f"{label}: None")
+
+# --------------------------------
 
 # Log each validation for locations
 
@@ -121,41 +138,3 @@ logging.info(f"Date formatting issues: {check_date_format(wind_df, 'date')}")
 logging.info("\n Range Checks:")
 logging.info(f"Wind speed outside of reasonable ranges: {check_wind_speed(wind_df, 'wind_speed')}")
 
-# Print each validation for locations
-
-print("-" * 15)
-print("Locations table")
-print("-" * 15)
-
-print("\n🧪 Null Counts:")
-print(check_nulls(locations_df))
-
-print("\n🧪 Duplicate Rows:")
-print(f"Total duplicates: {check_duplicates(locations_df)}")
-
-print("\n🧪 Format Checks:")
-print(f"Location_names not title cased: {check_location_format(locations_df, 'location_name')}")
-
-print("\n🧪 Range Checks:")
-print(f"Latitudes outside of UK ranges: {check_uk_lat(locations_df, 'latitude')}")
-print(f"Longitudes outside of UK ranges: {check_uk_long(locations_df, 'longitude')}")
-
-print("\n")
-
-# Print each validation for wind_data
-
-print("-" * 15)
-print("Wind_Data table")
-print("-" * 15)
-
-print("\n🧪 Null Counts:")
-print(check_nulls(wind_df))
-
-print("\n🧪 Duplicate Rows:")
-print(f"Total duplicates: {check_duplicates(wind_df)}")
-
-print("\n🧪 Format Checks:")
-print(f"Date formatting issues: {check_date_format(wind_df, 'date')}")
-
-print("\n🧪 Range Checks:")
-print(f"Wind speed outside of reasonable ranges: {check_wind_speed(wind_df, 'wind_speed')}")
