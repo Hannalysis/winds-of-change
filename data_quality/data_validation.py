@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 import pandas as pd
 import os
+import logging
 from dotenv import load_dotenv
 
 # Grab local .env info
@@ -60,13 +61,73 @@ def check_wind_speed(df, column):
 
 # -----------------------------------
 
-# Execute each validation for locations
+# Setup for logging
+
+logging.basicConfig(
+    filename='data_validation.log',           
+    level=logging.INFO,                       
+    format='%(asctime)s - %(levelname)s - %(message)s',  
+    datefmt='%Y-%m-%d %H:%M:%S'             
+)
+
+# --- Log specific functions --- #
+
+def log_if_invalid(result, label):
+    if result is not None:
+        logging.warning(
+            "\n=== Invalid data: %s ===\n%s\n===========================",
+            label,
+            result.to_string(index=False)
+        )
+
+# Log each validation for locations
+
+logging.info("-" * 15)
+logging.info("Locations table")
+logging.info("-" * 15)
+
+logging.info("\n Null Counts:")
+logging.info(check_nulls(locations_df))
+
+logging.info("\n Duplicate Rows:")
+logging.info(f"Total duplicates: {check_duplicates(locations_df)}")
+
+logging.info("\n Format Checks:")
+logging.info(f"Location_names not title cased: {check_location_format(locations_df, 'location_name')}")
+
+logging.info("\n Range Checks:")
+lat_result = check_uk_lat(locations_df, 'latitude')
+log_if_invalid(lat_result, "Latitudes outside of UK ranges")
+long_result = check_uk_long(locations_df, 'longitude')
+log_if_invalid(long_result, "Longitudes outside of UK ranges")
+
+logging.info("\n")
+
+# Log each validation for wind_data
+
+logging.info("-" * 15)
+logging.info("Wind_Data table")
+logging.info("-" * 15)
+
+logging.info("\n Null Counts:")
+logging.info(check_nulls(wind_df))
+
+logging.info("\n Duplicate Rows:")
+logging.info(f"Total duplicates: {check_duplicates(wind_df)}")
+
+logging.info("\n Format Checks:")
+logging.info(f"Date formatting issues: {check_date_format(wind_df, 'date')}")
+
+logging.info("\n Range Checks:")
+logging.info(f"Wind speed outside of reasonable ranges: {check_wind_speed(wind_df, 'wind_speed')}")
+
+# Print each validation for locations
 
 print("-" * 15)
 print("Locations table")
 print("-" * 15)
 
-print("🧪 Null Counts:")
+print("\n🧪 Null Counts:")
 print(check_nulls(locations_df))
 
 print("\n🧪 Duplicate Rows:")
@@ -81,13 +142,13 @@ print(f"Longitudes outside of UK ranges: {check_uk_long(locations_df, 'longitude
 
 print("\n")
 
-# Execute each validation for wind_data
+# Print each validation for wind_data
 
 print("-" * 15)
 print("Wind_Data table")
 print("-" * 15)
 
-print("🧪 Null Counts:")
+print("\n🧪 Null Counts:")
 print(check_nulls(wind_df))
 
 print("\n🧪 Duplicate Rows:")
