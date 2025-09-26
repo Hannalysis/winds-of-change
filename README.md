@@ -119,8 +119,6 @@ And run with:
 
 - All rows must have non-null values in
 - No duplicate rows should exist in the table
-</br>
-</br>
 
 ------------
 
