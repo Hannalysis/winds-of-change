@@ -1,4 +1,4 @@
-<h1 align = "center">Highest Wind Speed</h1>
+<h1 align = "center">Highest Wind Speeds (Multiple instances)</h1>
 
 <p align = "center"><b>Exploration 1</b>: What are the highest wind speeds available from this dataset? </p> <br/>
 

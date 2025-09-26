@@ -20,10 +20,11 @@ The overall intent will include additional layers such as current wind farm loca
 - [Installation](#installation)
 - [Brief](#my-brief)
 - [Documentation](#documentation)
-  - [Supplements](#project-supplements)
+  - [Supplements](#documentation) <!-- re-using doc link to avoid double line formatting -->
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
-- [Progress](#mvp---completed-20250316)
+  - [Data Validation](#data-validation-tables)
+- [Progress](#progress)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
@@ -71,13 +72,11 @@ And run with:
 
 ## Documentation 
 
-# <h3><u>Project Supplements</u></h3>  
-
+<h3><u>Project Supplements</u></h3>  
 
 - UK weather data: Kaggle.com/datasets, under the <i>"2M+ Daily Weather History UK"</i>.
 - UK geo location data: Nominatom.openstreetmap.org
 - UK wind turbine locations: TheWindPower.net
-
 
 # <h3><u>Tech Stack including:</u></h3>  
 
@@ -86,7 +85,7 @@ And run with:
     <img src="https://skillicons.dev/icons?i=python,postgresql,vscode&perline=8" />
   </a>
   <h4><u>Main modules:</u><br/><span style = "font-weight:lighter">pandas, sqlalchemy, folium, streamlit, dotenv, os</span></h4>
-  <h4><u>Script modules:</u><br/><span style = "font-weight:lighter">psycopg, requests, pathlib, csv, time</span></h4>
+  <h4><u>Script modules:</u><br/><span style = "font-weight:lighter">psycopg, requests, pathlib, sys, csv, time, logging</span></h4>
 </p>
 
 # <h3><u>ETL Pipeline</u></h3>  
@@ -96,14 +95,43 @@ And run with:
 3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/seed_data/town_lat_lons.csv`
 4. Seed processed data files into a local postgres database (<i>seed.py</i>)
 
-# <h3><u>MVP</u> - Completed: 2025/03/16</h3>
+# <h3><u>Data Validation Tables</u></h3>  
+
+<h4><b> Wind Data </b>(wind_data)</h4>
+
+| Field       | Type       | Rule                                         |
+|-------------|------------|----------------------------------------------|
+| id          | int64      | Must be unique                               |
+| location_id | int64      | One for each bespoke location                |
+| date        | datetime64 | In YYYY-MM-DD format                         |
+| wind_speed  | float64    | Within expected ranges (> 0 and < 100 km/h)  |
+
+<h4><b> Locations </b>(locations)</h4>
+
+| Field             |  Type               | Rule                        |
+|-------------------|---------------------|-----------------------------|
+| location_id       |  int64              | Must be unique              |
+| location_name     |  object (string)    | Title cased                 |
+| latitude          |  float64            | Within UK ranges (49 to 61) |
+| longitude         |  float64            | Within UK ranges (-8 to 2)  |
+
+<h4><b> Global Rules </b></h4>
+
+- All rows must have non-null values in
+- No duplicate rows should exist in the table
+
+------------
+
+## Progress
+
+<h3><b>MVP</b> - Completed: 2025/03/16</h3>
 
 - Basic small data sample of wind speed (last recorded end of 2024) for major cities in the UK 
 - Functional basic dataframe visualisation of the sample dataset
 - Functional geospatial map of the UK renders appropriately
 - Basic Style Formatting and rendered with Streamlit
 
-<h3><u>MS1</u> - Completed: 2025/04/13</h3>
+<h3><b>MS1</b> - Completed: 2025/04/13</h3>
 
 - Increased the Dataset size; included every major town/city within the UK and all wind speed information
 - Transformed the raw data: Dropped all unrelated weather columns, and checked for any missing values
@@ -123,29 +151,33 @@ And run with:
 
 ⚠️ <i>Note: Due to the file size of the wind-data, that particular csv (and the raw files) are not available inside the repo</i>
 
-<h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
+<h3><b>MS1.5</b> - Completed: 2025/07/22</h3>
 
 - Refactored the project hierarchy
 - Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
 
 
-# <h3><u>MS2 - In progress</u></h3>
+# <h3><b>MS2</b> - In progress</h3>
 
-- ✔️ Sanity check the transformed data within the database
 - 🚧 Explorations & visualisations  
   - ✔️ Highest Wind Speed | <i><a href="./explorations/highest-wind-speeds/hws-query-process.md">Query Process</a></i> | 🗺️ Visualisation Result (to run, refer to [Installation](#installation))
   - 🚧 Highest Avg Wind Speed (per region - tbc) | ⏳ <i>Query Process</i>  | ⏳ Visualisation Result 
-- Add data validation
+- ✔️ Add data validation
+  - ✔️ Add data validation script & appropriate logging | <a href="./data_quality/data_validation.py">data_validation</a>
+  - Implement a script to update the local database with the necessary record removals, courtesy of the findings from the first data validation run |  <a href="./data_quality/data-validation.md">Sweep 1</a>
+  - Update the ETL pipeline to include omitting the irrelevant locations
+- Add a data integrity assessment
+- Implement unit testing for utils & validation functions
 - CLI implementation
 
 ## Future Milestones
 
-<h3><u>MS3</u></h3>
+<h3><b>MS3</b></h3>
 
 - An additional layer (toggle) to show the current wind farm locations 
 - Increase the Dataset scope: Locating data for villages, and offshore locations around the UK
 
-<h3><u>MS4</u></h3>
+<h3><b>MS4</b></h3>
 
 - Implement a machine learning library (ie scikit) to aid future wind speed predictions 
 
