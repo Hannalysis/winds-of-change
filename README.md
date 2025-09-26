@@ -23,6 +23,7 @@ The overall intent will include additional layers such as current wind farm loca
   - [Supplements](#project-supplements)
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
+  - [Data Validation](#data-validation-tables)
 - [Progress](#mvp---completed-20250316)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
@@ -95,6 +96,31 @@ And run with:
 2. Filter only useful columns (<i>filter_weather_data.py</i>) → `data/processed/seed_data/location_date_winds_only.csv`
 3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/seed_data/town_lat_lons.csv`
 4. Seed processed data files into a local postgres database (<i>seed.py</i>)
+
+# <h3><u>Data Validation Tables</u></h3>  
+
+### Wind Data (wind_data)
+
+| Field       | Type       | Rule                                         |
+|-------------|------------|----------------------------------------------|
+| id          | int64      | Must be unique                               |
+| location_id | int64      | One for each bespoke location                |
+| date        | datetime64 | In YYYY-MM-DD format                         |
+| wind_speed  | float64    | Within expected ranges (> 0 and < 100 km/h)  |
+
+### Locations (locations)
+
+| Field             |  Type               | Rule                        |
+|-------------------|---------------------|-----------------------------|
+| location_id       |  int64              | Must be unique              |
+| location_name     |  object (string)    | Title cased                 |
+| latitude          |  float64            | Within UK ranges (49 to 61) |
+| longitude         |  float64            | Within UK ranges (-8 to 2)  |
+
+### Global Rules
+
+- All rows must have non-null values in
+- No duplicate rows should exist in the table
 
 # <h3><u>MVP</u> - Completed: 2025/03/16</h3>
 
