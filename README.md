@@ -121,7 +121,8 @@ And run with:
 - No duplicate rows should exist in the table
 </br>
 </br>
-----------------
+
+------------
 
 ## Progress
 
