@@ -97,7 +97,7 @@ And run with:
 
 # <h3><u>Data Validation Tables</u></h3>  
 
-### Wind Data (wind_data)
+<h4><b> Wind Data </b>(wind_data)</h4>
 
 | Field       | Type       | Rule                                         |
 |-------------|------------|----------------------------------------------|
@@ -106,7 +106,7 @@ And run with:
 | date        | datetime64 | In YYYY-MM-DD format                         |
 | wind_speed  | float64    | Within expected ranges (> 0 and < 100 km/h)  |
 
-### Locations (locations)
+<h4><b> Locations </b>(locations)</h4>
 
 | Field             |  Type               | Rule                        |
 |-------------------|---------------------|-----------------------------|
@@ -115,7 +115,7 @@ And run with:
 | latitude          |  float64            | Within UK ranges (49 to 61) |
 | longitude         |  float64            | Within UK ranges (-8 to 2)  |
 
-### Global Rules
+<h4><b> Global Rules </b></h4>
 
 - All rows must have non-null values in
 - No duplicate rows should exist in the table
@@ -126,14 +126,14 @@ And run with:
 
 ## Progress
 
-<h3><u>MVP</u> - Completed: 2025/03/16</h3>
+<h3><b>MVP</b> - Completed: 2025/03/16</h3>
 
 - Basic small data sample of wind speed (last recorded end of 2024) for major cities in the UK 
 - Functional basic dataframe visualisation of the sample dataset
 - Functional geospatial map of the UK renders appropriately
 - Basic Style Formatting and rendered with Streamlit
 
-<h3><u>MS1</u> - Completed: 2025/04/13</h3>
+<h3><b>MS1</b> - Completed: 2025/04/13</h3>
 
 - Increased the Dataset size; included every major town/city within the UK and all wind speed information
 - Transformed the raw data: Dropped all unrelated weather columns, and checked for any missing values
@@ -153,13 +153,13 @@ And run with:
 
 ⚠️ <i>Note: Due to the file size of the wind-data, that particular csv (and the raw files) are not available inside the repo</i>
 
-<h3><u>MS1.5</u> - Completed: 2025/07/22</h3>
+<h3><b>MS1.5</b> - Completed: 2025/07/22</h3>
 
 - Refactored the project hierarchy
 - Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
 
 
-# <h3><u>MS2 - In progress</u></h3>
+# <h3><b>MS2</b> - In progress</h3>
 
 - 🚧 Explorations & visualisations  
   - ✔️ Highest Wind Speed | <i><a href="./explorations/highest-wind-speeds/hws-query-process.md">Query Process</a></i> | 🗺️ Visualisation Result (to run, refer to [Installation](#installation))
@@ -174,12 +174,12 @@ And run with:
 
 ## Future Milestones
 
-<h3><u>MS3</u></h3>
+<h3><b>MS3</b></h3>
 
 - An additional layer (toggle) to show the current wind farm locations 
 - Increase the Dataset scope: Locating data for villages, and offshore locations around the UK
 
-<h3><u>MS4</u></h3>
+<h3><b>MS4</b></h3>
 
 - Implement a machine learning library (ie scikit) to aid future wind speed predictions 
 
