@@ -20,11 +20,11 @@ The overall intent will include additional layers such as current wind farm loca
 - [Installation](#installation)
 - [Brief](#my-brief)
 - [Documentation](#documentation)
-  - [Supplements](#project-supplements)
+  - [Supplements](#documentation) <!-- re-using doc link to avoid double line formatting -->
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
   - [Data Validation](#data-validation-tables)
-- [Progress](#mvp---completed-20250316)
+- [Progress](#progress)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
 - [Author](#author)
@@ -72,13 +72,11 @@ And run with:
 
 ## Documentation 
 
-# <h3><u>Project Supplements</u></h3>  
-
+<h3><u>Project Supplements</u></h3>  
 
 - UK weather data: Kaggle.com/datasets, under the <i>"2M+ Daily Weather History UK"</i>.
 - UK geo location data: Nominatom.openstreetmap.org
 - UK wind turbine locations: TheWindPower.net
-
 
 # <h3><u>Tech Stack including:</u></h3>  
 
@@ -87,7 +85,7 @@ And run with:
     <img src="https://skillicons.dev/icons?i=python,postgresql,vscode&perline=8" />
   </a>
   <h4><u>Main modules:</u><br/><span style = "font-weight:lighter">pandas, sqlalchemy, folium, streamlit, dotenv, os</span></h4>
-  <h4><u>Script modules:</u><br/><span style = "font-weight:lighter">psycopg, requests, pathlib, csv, time</span></h4>
+  <h4><u>Script modules:</u><br/><span style = "font-weight:lighter">psycopg, requests, pathlib, sys, csv, time, logging</span></h4>
 </p>
 
 # <h3><u>ETL Pipeline</u></h3>  
@@ -121,8 +119,13 @@ And run with:
 
 - All rows must have non-null values in
 - No duplicate rows should exist in the table
+</br>
+</br>
+----------------
 
-# <h3><u>MVP</u> - Completed: 2025/03/16</h3>
+## Progress
+
+<h3><u>MVP</u> - Completed: 2025/03/16</h3>
 
 - Basic small data sample of wind speed (last recorded end of 2024) for major cities in the UK 
 - Functional basic dataframe visualisation of the sample dataset
@@ -157,11 +160,15 @@ And run with:
 
 # <h3><u>MS2 - In progress</u></h3>
 
-- ✔️ Sanity check the transformed data within the database
 - 🚧 Explorations & visualisations  
   - ✔️ Highest Wind Speed | <i><a href="./explorations/highest-wind-speeds/hws-query-process.md">Query Process</a></i> | 🗺️ Visualisation Result (to run, refer to [Installation](#installation))
   - 🚧 Highest Avg Wind Speed (per region - tbc) | ⏳ <i>Query Process</i>  | ⏳ Visualisation Result 
-- Add data validation
+- ✔️ Add data validation
+  - ✔️ Add data validation script & appropriate logging | <a href="./data_quality/data_validation.py">data_validation</a>
+  - Implement a script to update the local database with the necessary record removals, courtesy of the findings from the first data validation run |  <a href="./data_quality/data-validation.md">Sweep 1</a>
+  - Update the ETL pipeline to include omitting the irrelevant locations
+- Add a data integrity assessment
+- Implement unit testing for utils & validation functions
 - CLI implementation
 
 ## Future Milestones
