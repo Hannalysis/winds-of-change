@@ -3,9 +3,14 @@ import csv
 import time
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.append(str(PROJECT_ROOT))
+LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "town_lat_lons.csv" 
 
 load_dotenv()
-
 USER_AGENT = os.getenv("USER_AGENT")
 
 def get_lat_lon_nominatim(location_name):
@@ -547,8 +552,7 @@ towns = ['Abengourou',
 'Ynysybwl',]
 
 # Storing the results to a local CSV under town_lat_lons.csv within the processed folder
-
-with open('../../data/processed/seed_data/town_lat_lons.csv', mode='w', newline='') as file:
+with open(LOCATIONS_CSV, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Town', 'Latitude', 'Longitude'])
 

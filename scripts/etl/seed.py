@@ -2,14 +2,19 @@ import psycopg
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+import sys
+
+# Ensuring directory pathing is consistent
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.append(str(PROJECT_ROOT))
 
 load_dotenv()
-
 DB_URL = os.getenv("DB_URL")
 
 # File paths
-LOCATIONS_CSV = "../../data/processed/seed_data/town_lat_lons.csv"
-WIND_DATA_CSV = "../../data/processed/seed_data/location_date_winds_only.csv"
+LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "town_lat_lons.csv" 
+WIND_DATA_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "location_date_winds_only.csv" 
 
 # Connection details
 conn_info = DB_URL

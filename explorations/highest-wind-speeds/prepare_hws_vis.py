@@ -2,11 +2,12 @@ from sqlalchemy import create_engine
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import sys
+from utils import extract_to_csv
+
 # Ensuring directory pathing is consistent
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-import sys
 sys.path.append(str(PROJECT_ROOT))
-from utils import extract_to_csv
 
 CSV_PATH = PROJECT_ROOT / "data" / "processed" / "queries" / "highest_wind_speeds.csv"
 
