@@ -8,13 +8,13 @@ import sys
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.append(str(PROJECT_ROOT))
-LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "town_lat_lons.csv" 
+LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "uk_town_lat_lons.csv" 
 
 load_dotenv()
 USER_AGENT = os.getenv("USER_AGENT")
 
 def get_lat_lon_nominatim(location_name):
-    base_url = f'https://nominatim.openstreetmap.org/search?q={location_name}&format=json&limit=1'
+    base_url = f'https://nominatim.openstreetmap.org/search?q={location_name}&countrycodes=gb&format=json&limit=1'
 
     headers = {
         "accept-language": "en",
@@ -24,11 +24,9 @@ def get_lat_lon_nominatim(location_name):
     try:
         response = requests.get(base_url, headers=headers)
         
-        # Check if the request was successful
         if response.status_code == 200:
             data = response.json()
 
-            # If the API returns results
             if data:
                 lat = data[0]['lat']
                 lon = data[0]['lon']
@@ -41,11 +39,10 @@ def get_lat_lon_nominatim(location_name):
             return None, None
 
     except requests.exceptions.RequestException as e:
-        # Handle network-related errors (e.g., timeouts)
         print(f"Request failed for {location_name}. Error: {e}")
         return None, None
 
-# List of UK town names
+# List of town names
 towns = ['Abengourou', 
 'Amsterdam', 
 'Ardkeen', 
@@ -551,12 +548,12 @@ towns = ['Abengourou',
 'Wyndham', 
 'Ynysybwl',]
 
-# Storing the results to a local CSV under town_lat_lons.csv within the processed folder
+# Storing the results to a local CSV within the processed folder
 with open(LOCATIONS_CSV, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Town', 'Latitude', 'Longitude'])
 
-    # Looping through the towns and get latitudes and longitudes
+    # Looping through the towns and saving their respective latitudes and longitudes
 
     for town in towns:
         lat, lon = get_lat_lon_nominatim(town)
@@ -568,4 +565,4 @@ with open(LOCATIONS_CSV, mode='w', newline='') as file:
         
         time.sleep(2)
 
-print("Latitudes and Longitudes have been saved to 'town_lat_lons.csv'.")
+print("Latitudes and Longitudes have been saved to 'uk_town_lat_lons.csv'.")
