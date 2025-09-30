@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 import sys
+import logging
+from datetime import datetime
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.append(str(PROJECT_ROOT))
@@ -548,6 +550,20 @@ towns = ['Abengourou',
 'Wyndham', 
 'Ynysybwl',]
 
+# Setup for Logging
+
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+logs_dir = PROJECT_ROOT / "scripts" / "etl" / "logs" 
+logs_dir.mkdir(parents=True, exist_ok=True) 
+log_file = logs_dir / f"uk_lat_long_fetch_{timestamp}.log"
+
+logging.basicConfig(
+    filename=str(log_file),           
+    level=logging.INFO,                       
+    format='%(asctime)s - %(levelname)s - %(message)s',  
+    datefmt='%Y-%m-%d %H:%M:%S'             
+)
+
 # Storing the results to a local CSV within the processed folder
 with open(LOCATIONS_CSV, mode='w', newline='') as file:
     writer = csv.writer(file)
@@ -561,7 +577,9 @@ with open(LOCATIONS_CSV, mode='w', newline='') as file:
             print(f"{town}: Latitude = {lat}, Longitude = {lon}")
             writer.writerow([town, lat, lon])
         else:
-            print(f"{town}: No results found")
+            print(f"{town}: No results found.")
+            # Logging towns with no geodata fetched
+            logging.info(f"{town}: No results found.")
         
         time.sleep(2)
 
