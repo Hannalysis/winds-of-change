@@ -13,14 +13,18 @@ load_dotenv()
 DB_URL = os.getenv("DB_URL")
 
 # File paths
-LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "town_lat_lons.csv" 
+LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "uk_town_lat_lons.csv" 
+MANUAL_LOCATIONS_CSV = PROJECT_ROOT / "data" / "raw" / "manual_remaining_uk_geocodes.csv" 
 WIND_DATA_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "location_date_winds_only.csv" 
+
+# Combine all API fetched geodata with the manual fetch
+ALL_UK_LOCATIONS = pd.concat([LOCATIONS_CSV, MANUAL_LOCATIONS_CSV], ignore_index=True)
 
 # Connection details
 conn_info = DB_URL
 
 # Load data
-locations_df = pd.read_csv(LOCATIONS_CSV)
+locations_df = pd.read_csv(ALL_UK_LOCATIONS)
 wind_df = pd.read_csv(WIND_DATA_CSV)
 
 # Clean string fields for consistent matching
