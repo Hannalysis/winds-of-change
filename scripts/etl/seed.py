@@ -2,29 +2,38 @@ import psycopg
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+import sys
+
+# Ensuring directory pathing is consistent
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.append(str(PROJECT_ROOT))
 
 load_dotenv()
-
 PG_USER = os.getenv("PG_USER")
 PG_PW = os.getenv("PG_PW")
 DB_NAME = os.getenv("DB_NAME")
 
 # File paths
-LOCATIONS_CSV = "../data/processed/seed_data/town_lat_lons.csv"
-WIND_DATA_CSV = "../data/processed/seed_data/location_date_winds_only.csv"
+LOCATIONS_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "uk_town_lat_lons.csv" 
+MANUAL_LOCATIONS_CSV = PROJECT_ROOT / "data" / "raw" / "manual_remaining_uk_geocodes.csv" 
+WIND_DATA_CSV = PROJECT_ROOT / "data" / "processed" / "seed_data" / "location_date_winds_only.csv" 
+
+# Combine all API fetched geodata with the manual fetch
+ALL_UK_LOCATIONS = pd.concat([LOCATIONS_CSV, MANUAL_LOCATIONS_CSV], ignore_index=True)
 
 # Connection details
-conn_info = f"dbname={DB_NAME} user={PG_USER} password={PG_PW} host=localhost port=5432"
+psy_conn_info = f"dbname={DB_NAME} user={PG_USER} password={PG_PW} host=localhost port=5432"
 
 # Load data
-locations_df = pd.read_csv(LOCATIONS_CSV)
+locations_df = pd.read_csv(ALL_UK_LOCATIONS)
 wind_df = pd.read_csv(WIND_DATA_CSV)
 
 # Clean string fields for consistent matching
 locations_df['location_name'] = locations_df['location_name'].astype(str).str.strip()
 wind_df['location_name'] = wind_df['location_name'].astype(str).str.strip()
 
-with psycopg.connect(conn_info) as conn:
+with psycopg.connect(psy_conn_info) as conn:
     with conn.cursor() as cur:
         
         # Insert locations

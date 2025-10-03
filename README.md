@@ -23,7 +23,8 @@ The overall intent will include additional layers such as current wind farm loca
   - [Supplements](#documentation) <!-- re-using doc link to avoid double line formatting -->
   - [Tech Stack](#tech-stack-including)
   - [ETL Pipeline](#etl-pipeline)
-  - [Data Validation](#data-validation-tables)
+  - [Data Validation](#data-validation---tables)
+    - [Validation Sweeps](#data-validation---sweeps)
 - [Progress](#progress)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
@@ -95,7 +96,7 @@ And run with:
 3. Enrich town data with lat/long with an external API (<i>uk_lat_long_fetch.py</i>) → `data/processed/seed_data/town_lat_lons.csv`
 4. Seed processed data files into a local postgres database (<i>seed.py</i>)
 
-# <h3><u>Data Validation Tables</u></h3>  
+# <h3><u>Data Validation - Tables</u></h3>  
 
 <h4><b> Wind Data </b>(wind_data)</h4>
 
@@ -120,6 +121,10 @@ And run with:
 - All rows must have non-null values in
 - No duplicate rows should exist in the table
 
+# <h3><u>Data Validation - Sweeps</u></h3> 
+
+Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/data-validation.md">data-validation.md</a>
+
 ------------
 
 ## Progress
@@ -139,7 +144,7 @@ And run with:
 - Ensured consistency between the two csv files whether information is related
 - Seeded the winds and geo csv files and load them into a local SQL database instance 
 
-<h4>Data successfully seeded</h4>
+<h4>Local postgres database dataset successfully seeded</h4>
 
 <p align = "center">
   <img align = "center" src="/readme-images/wind-data-seeded-sql-scaled.PNG" alt="pgadmin-wind-data-select-all-2807998-entries">
@@ -154,7 +159,7 @@ And run with:
 <h3><b>MS1.5</b> - Completed: 2025/07/22</h3>
 
 - Refactored the project hierarchy
-- Adjusted the script outputs to match the new structure [- See Data Pipeline](#etl-pipeline)
+- Adjusted the script outputs to match the new structure | [See Data Pipeline](#etl-pipeline)
 
 
 # <h3><b>MS2</b> - In progress</h3>
@@ -164,11 +169,17 @@ And run with:
   - 🚧 Highest Avg Wind Speed (per region - tbc) | ⏳ <i>Query Process</i>  | ⏳ Visualisation Result 
 - ✔️ Add data validation
   - ✔️ Add data validation script & appropriate logging | <a href="./data_quality/data_validation.py">data_validation</a>
-  - Implement a script to update the local database with the necessary record removals, courtesy of the findings from the first data validation run |  <a href="./data_quality/data-validation.md">Sweep 1</a>
-  - Update the ETL pipeline to include omitting the irrelevant locations
+  - ✔️ Implement a script to update the local database with the necessary record removals, courtesy of the findings from the first data validation run |  <a href="./data_quality/data-validation.md">Sweep 1</a>
+  - ✔️ Update the ETL pipeline to include omitting the irrelevant locations
 - Add a data integrity assessment
 - Implement unit testing for utils & validation functions
 - CLI implementation
+
+<h4>Local postgres database record removals successful</h4>
+
+<p align = "center">
+  <img src= "/readme-images/local-db-update-deleting-non-uk-records-wind-data-and-locations-table.jpg" alt="pgadmin-ss-wind-data-and-locations-records-updated" width="90%"/>
+</p>
 
 ## Future Milestones
 

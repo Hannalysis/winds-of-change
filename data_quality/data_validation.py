@@ -55,11 +55,11 @@ def check_date_format(df, column, date_format='%Y-%m-%d'):
         return df[invalid_dates.isna()]
 
 def check_uk_lat (df, column):
-    not_uk_lat = df[(df[column] < 49) | (df[column] > 61)]
+    not_uk_lat = df[(df[column] < 49.86) | (df[column] > 59.39)]
     return not_uk_lat if not not_uk_lat.empty else None
 
 def check_uk_long (df, column):
-    not_uk_long = df[(df[column] < -8) | (df[column] > 2)]
+    not_uk_long = df[(df[column] < -8.64) | (df[column] > 1.76)]
     return not_uk_long if not not_uk_long.empty else None
 
 def check_wind_speed(df, column):

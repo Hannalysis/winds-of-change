@@ -1,0 +1,41 @@
+2025-10-03 11:32:13 - INFO - ---------------
+2025-10-03 11:32:13 - INFO - Locations table
+2025-10-03 11:32:13 - INFO - ---------------
+2025-10-03 11:32:13 - INFO - 
+ Null Counts:
+2025-10-03 11:32:13 - INFO - location_id      0
+location_name    0
+latitude         0
+longitude        0
+dtype: int64
+2025-10-03 11:32:13 - INFO - 
+ Duplicate Rows:
+2025-10-03 11:32:13 - INFO - Total duplicates: 0
+2025-10-03 11:32:13 - INFO - 
+ Format Checks:
+2025-10-03 11:32:13 - INFO - Location_names not title cased: None
+2025-10-03 11:32:13 - INFO - 
+ Range Checks:
+2025-10-03 11:32:13 - INFO - Latitudes outside of UK ranges: None
+2025-10-03 11:32:13 - INFO - Longitudes outside of UK ranges: None
+2025-10-03 11:32:13 - INFO - 
+
+2025-10-03 11:32:13 - INFO - ---------------
+2025-10-03 11:32:13 - INFO - Wind_Data table
+2025-10-03 11:32:13 - INFO - ---------------
+2025-10-03 11:32:13 - INFO - 
+ Null Counts:
+2025-10-03 11:32:14 - INFO - id             0
+location_id    0
+date           0
+wind_speed     0
+dtype: int64
+2025-10-03 11:32:14 - INFO - 
+ Duplicate Rows:
+2025-10-03 11:32:14 - INFO - Total duplicates: 0
+2025-10-03 11:32:14 - INFO - 
+ Format Checks:
+2025-10-03 11:32:14 - INFO - Date formatting issues: None
+2025-10-03 11:32:14 - INFO - 
+ Range Checks:
+2025-10-03 11:32:14 - INFO - Wind speed outside of reasonable ranges: None
