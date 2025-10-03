@@ -178,9 +178,7 @@ Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/d
 <h4>Local postgres database record removals successful</h4>
 
 <p align = "center">
-  <img src= "/readme-images/local-db-update-deleting-non-uk-records-wind-data-alt.jpg" alt="pgadmin-ss-wind-data-records-updated" width="45%" style="margin-right:12px;"/>
-  <img src="/readme-images/local-db-update-deleting-non-uk-records-locations.jpg"
-  alt="pgadmin-ss-locations-records-updated" width="45%" />
+  <img src= "/readme-images/local-db-update-deleting-non-uk-records-wind-data-and-locations-table.jpg" alt="pgadmin-ss-wind-data-and-locations-records-updated" width="90%"/>
 </p>
 
 ## Future Milestones
