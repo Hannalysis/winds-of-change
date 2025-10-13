@@ -109,12 +109,12 @@ And run with:
 
 <h4><b> Locations </b>(locations)</h4>
 
-| Field             |  Type               | Rule                        |
-|-------------------|---------------------|-----------------------------|
-| location_id       |  int64              | Must be unique              |
-| location_name     |  object (string)    | Title cased                 |
-| latitude          |  float64            | Within UK ranges (49 to 61) |
-| longitude         |  float64            | Within UK ranges (-8 to 2)  |
+| Field             |  Type               | Rule                              |
+|-------------------|---------------------|-----------------------------------|
+| location_id       |  int64              | Must be unique                    |
+| location_name     |  object (string)    | Title cased                       |
+| latitude          |  float64            | Within UK ranges (49.86 to 59.39) |
+| longitude         |  float64            | Within UK ranges (-8.64 to 1.76)  |
 
 <h4><b> Global Rules </b></h4>
 
