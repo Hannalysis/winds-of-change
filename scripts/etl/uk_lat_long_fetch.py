@@ -564,23 +564,25 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'             
 )
 
-# Storing the results to a local CSV within the processed folder
-with open(LOCATIONS_CSV, mode='w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(['Town', 'Latitude', 'Longitude'])
 
-    # Looping through the towns and saving their respective latitudes and longitudes
+if __name__ == "__main__":
+    # Storing the results to a local CSV within the processed folder
+    with open(LOCATIONS_CSV, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Town', 'Latitude', 'Longitude'])
 
-    for town in towns:
-        lat, lon = get_lat_lon_nominatim(town)
-        if lat and lon:
-            print(f"{town}: Latitude = {lat}, Longitude = {lon}")
-            writer.writerow([town, lat, lon])
-        else:
-            print(f"{town}: No results found.")
-            # Logging towns with no geodata fetched
-            logging.info(f"{town}: No results found.")
-        
-        time.sleep(2)
+        # Looping through the towns and saving their respective latitudes and longitudes
 
-print("Latitudes and Longitudes have been saved to 'uk_town_lat_lons.csv'.")
+        for town in towns:
+            lat, lon = get_lat_lon_nominatim(town)
+            if lat and lon:
+                print(f"{town}: Latitude = {lat}, Longitude = {lon}")
+                writer.writerow([town, lat, lon])
+            else:
+                print(f"{town}: No results found.")
+                # Logging towns with no geodata fetched
+                logging.info(f"{town}: No results found.")
+            
+            time.sleep(2)
+
+    print("Latitudes and Longitudes have been saved to 'uk_town_lat_lons.csv'.")
