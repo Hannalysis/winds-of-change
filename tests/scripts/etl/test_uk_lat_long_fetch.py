@@ -1,5 +1,4 @@
 from scripts.etl.uk_lat_long_fetch import get_lat_lon_nominatim
-import pytest
 from unittest.mock import patch, Mock
 
 @patch('scripts.etl.uk_lat_long_fetch.requests.get')
