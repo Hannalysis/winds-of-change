@@ -138,4 +138,87 @@ def test_check_date_format_all_invalid():
     })
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
 
-    
+# --- check_uk_lat tests ---
+def test_check_uk_lat_all_valid():
+    df = pd.DataFrame({
+        "latitude": [51.5074, 53.4808, 55.9533]
+    })
+    result = check_uk_lat(df, "latitude")
+    assert result is None
+
+def test_check_uk_lat_some_invalid():
+    df = pd.DataFrame({
+        "latitude": [51.5074, 53.4808, 55.9533, 999.9999]
+    })
+    result = check_uk_lat(df, "latitude")
+    expected_df = pd.DataFrame({
+        "latitude": [999.9999]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+def test_check_uk_lat_all_invalid():
+    df = pd.DataFrame({
+        "latitude": [999.9999, 888.8888, 777.7777]
+    })
+    result = check_uk_lat(df, "latitude")
+    expected_df = pd.DataFrame({
+        "latitude": [999.9999, 888.8888, 777.7777]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+# --- check_uk_long tests ---
+def test_check_uk_long_all_valid():
+    df = pd.DataFrame({
+        "longitude": [-0.1278, -2.2426, -3.1883]
+    })
+    result = check_uk_long(df, "longitude")
+    assert result is None
+
+def test_check_uk_long_some_invalid():
+    df = pd.DataFrame({
+        "longitude": [-0.1278, -2.2426, -3.1883, 999.9999]
+    })
+    result = check_uk_long(df, "longitude")
+    expected_df = pd.DataFrame({
+        "longitude": [999.9999]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+def test_check_uk_long_all_invalid():
+    df = pd.DataFrame({
+        "longitude": [999.9999, 888.8888, 777.7777]
+    })
+    result = check_uk_long(df, "longitude")
+    expected_df = pd.DataFrame({
+        "longitude": [999.9999, 888.8888, 777.7777]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+# --- check_wind_speed tests ---
+
+def test_check_wind_speed_all_valid():
+    df = pd.DataFrame({
+        "wind_speed": [0, 15, 30, 50, 70]
+    })
+    result = check_wind_speed(df, "wind_speed")
+    assert result is None
+
+def test_check_wind_speed_some_invalid():
+    df = pd.DataFrame({
+        "wind_speed": [0, 15, 150, -10, 70]
+    })
+    result = check_wind_speed(df, "wind_speed")
+    expected_df = pd.DataFrame({
+        "wind_speed": [150, -10]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+def test_check_wind_speed_all_invalid():
+    df = pd.DataFrame({
+        "wind_speed": [150, -10, 200]
+    })
+    result = check_wind_speed(df, "wind_speed")
+    expected_df = pd.DataFrame({
+        "wind_speed": [150, -10, 200]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
