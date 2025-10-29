@@ -99,42 +99,43 @@ def log_if_invalid(result, label):
 
 # Log each validation for locations
 
-logging.info("-" * 15)
-logging.info("Locations table")
-logging.info("-" * 15)
+if __name__ == "__main__":
+    logging.info("-" * 15)
+    logging.info("Locations table")
+    logging.info("-" * 15)
 
-logging.info("\n Null Counts:")
-logging.info(check_nulls(locations_df))
+    logging.info("\n Null Counts:")
+    logging.info(check_nulls(locations_df))
 
-logging.info("\n Duplicate Rows:")
-logging.info(f"Total duplicates: {check_duplicates(locations_df)}")
+    logging.info("\n Duplicate Rows:")
+    logging.info(f"Total duplicates: {check_duplicates(locations_df)}")
 
-logging.info("\n Format Checks:")
-logging.info(f"Location_names not title cased: {check_location_format(locations_df, 'location_name')}")
+    logging.info("\n Format Checks:")
+    logging.info(f"Location_names not title cased: {check_location_format(locations_df, 'location_name')}")
 
-logging.info("\n Range Checks:")
-lat_result = check_uk_lat(locations_df, 'latitude')
-log_if_invalid(lat_result, "Latitudes outside of UK ranges")
-long_result = check_uk_long(locations_df, 'longitude')
-log_if_invalid(long_result, "Longitudes outside of UK ranges")
+    logging.info("\n Range Checks:")
+    lat_result = check_uk_lat(locations_df, 'latitude')
+    log_if_invalid(lat_result, "Latitudes outside of UK ranges")
+    long_result = check_uk_long(locations_df, 'longitude')
+    log_if_invalid(long_result, "Longitudes outside of UK ranges")
 
-logging.info("\n")
+    logging.info("\n")
 
-# Log each validation for wind_data
+    # Log each validation for wind_data
 
-logging.info("-" * 15)
-logging.info("Wind_Data table")
-logging.info("-" * 15)
+    logging.info("-" * 15)
+    logging.info("Wind_Data table")
+    logging.info("-" * 15)
 
-logging.info("\n Null Counts:")
-logging.info(check_nulls(wind_df))
+    logging.info("\n Null Counts:")
+    logging.info(check_nulls(wind_df))
 
-logging.info("\n Duplicate Rows:")
-logging.info(f"Total duplicates: {check_duplicates(wind_df)}")
+    logging.info("\n Duplicate Rows:")
+    logging.info(f"Total duplicates: {check_duplicates(wind_df)}")
 
-logging.info("\n Format Checks:")
-logging.info(f"Date formatting issues: {check_date_format(wind_df, 'date')}")
+    logging.info("\n Format Checks:")
+    logging.info(f"Date formatting issues: {check_date_format(wind_df, 'date')}")
 
-logging.info("\n Range Checks:")
-logging.info(f"Wind speed outside of reasonable ranges: {check_wind_speed(wind_df, 'wind_speed')}")
+    logging.info("\n Range Checks:")
+    logging.info(f"Wind speed outside of reasonable ranges: {check_wind_speed(wind_df, 'wind_speed')}")
 
