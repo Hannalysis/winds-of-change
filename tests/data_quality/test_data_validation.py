@@ -56,3 +56,86 @@ def test_check_duplicates_all_duplicates():
     result = check_duplicates(df)
     assert result == 2
 
+# --- check_location_format tests ---
+
+def test_check_location_format_all_title_case():
+    df = pd.DataFrame({
+        "location_name": ["London", "Manchester", "Birmingham"]
+    })
+    result = check_location_format(df, "location_name")
+    assert result is None
+
+def test_check_location_format_mixed_case():
+    df = pd.DataFrame({
+        "location_name": ["London", "manchester", "Birmingham"]
+    })
+    result = check_location_format(df, "location_name")
+    expected_series = pd.Series({1: "manchester"})
+    expected_list = ["manchester"]
+
+    if isinstance(result, list):
+        assert result == expected_list
+    else:
+        pd.testing.assert_series_equal(result, expected_series)
+
+
+def test_check_location_format_all_lower_case():
+    df = pd.DataFrame({
+        "location_name": ["london", "manchester", "birmingham"]
+    })
+    result = check_location_format(df, "location_name")
+    expected_series = pd.Series({
+        0: "london",
+        1: "manchester",
+        2: "birmingham"
+    })
+    expected_list = ["london", "manchester", "birmingham"]
+
+    if isinstance(result, list):
+        assert result == expected_list
+    else:
+        pd.testing.assert_series_equal(result, expected_series)
+
+def test_check_location_format_with_known_exceptions():
+    df = pd.DataFrame({
+        "location_name": ["London", "Knight's Hill", "birmingham"]
+    })
+    result = check_location_format(df, "location_name")
+    expected_series = pd.Series({2: "birmingham"})
+    expected_list = ["birmingham"]
+
+    if isinstance(result, list):
+        assert result == expected_list
+    else:
+        pd.testing.assert_series_equal(result, expected_series)
+
+# --- check_date_format tests ---
+
+def test_check_date_format_all_valid():
+    df = pd.DataFrame({
+        "date": ["2023-01-01", "2023-12-31", "2024-06-15"]
+    })
+    result = check_date_format(df, "date")
+    assert result is None
+
+def test_check_date_format_some_invalid():
+    df = pd.DataFrame({
+        "date": ["2023-01-01", "2023-31-12", "2024-06-15", "15-06-2024"]
+    })
+    result = check_date_format(df, "date")
+    expected_df = pd.DataFrame({
+        "date": ["2023-31-12", "15-06-2024"]
+    }, index=[1, 3])
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+def test_check_date_format_all_invalid():
+    df = pd.DataFrame({
+        "date": ["01-01-2023", "31-12-2023", "15-06-2024"]
+    })
+    result = check_date_format(df, "date")
+    expected_df = pd.DataFrame({
+        "date": ["01-01-2023", "31-12-2023", "15-06-2024"]
+    })
+    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_df.reset_index(drop=True))
+
+    
