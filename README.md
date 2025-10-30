@@ -128,7 +128,7 @@ Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/d
 
 # <h3><u>Unit Testing</u></h3> 
 
-A `pytest` suite validates the following:
+A `pytest` suite that validates the following:
 
 | Subfolder       | Function/s                              |
 |-----------------|-----------------------------------------|
