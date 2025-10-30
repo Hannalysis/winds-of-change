@@ -25,6 +25,7 @@ The overall intent will include additional layers such as current wind farm loca
   - [ETL Pipeline](#etl-pipeline)
   - [Data Validation](#data-validation---tables)
     - [Validation Sweeps](#data-validation---sweeps)
+  - [Unit Testing](#unit-testing)
 - [Progress](#progress)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
@@ -124,6 +125,18 @@ And run with:
 # <h3><u>Data Validation - Sweeps</u></h3> 
 
 Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/data-validation.md">data-validation.md</a>
+
+# <h3><u>Unit Testing</u></h3> 
+
+A `pytest` suite validates the following:
+
+| Subfolder       | Function/s                              |
+|-----------------|-----------------------------------------|
+| `scripts/`      | Geocode enrichment API fetch            |
+| `utils/`        | CSV data extraction utility functions   |
+| `data_quality/` | Data validation and integrity functions |
+
+<p>Located in 📂 <a href="./tests">tests</a></p>
 
 ------------
 
