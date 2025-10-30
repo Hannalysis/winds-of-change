@@ -25,6 +25,7 @@ The overall intent will include additional layers such as current wind farm loca
   - [ETL Pipeline](#etl-pipeline)
   - [Data Validation](#data-validation---tables)
     - [Validation Sweeps](#data-validation---sweeps)
+  - [Unit Testing](#unit-testing)
 - [Progress](#progress)
   - [Current Milestone](#ms2---in-progress)
   - [Future Milestones](#future-milestones)
@@ -125,6 +126,18 @@ And run with:
 
 Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/data-validation.md">data-validation.md</a>
 
+# <h3><u>Unit Testing</u></h3> 
+
+A `pytest` suite that validates the following:
+
+| Subfolder       | Function/s                              |
+|-----------------|-----------------------------------------|
+| `scripts/`      | Geocode enrichment API fetch            |
+| `utils/`        | CSV data extraction utility functions   |
+| `data_quality/` | Data validation and integrity functions |
+
+<p>Located in 📂 <a href="./tests">tests</a></p>
+
 ------------
 
 ## Progress
@@ -172,7 +185,7 @@ Sweep 1 | Opened: 2025-09-25 | Resolved: 2025-10-03 |  <a href="./data_quality/d
   - ✔️ Implement a script to update the local database with the necessary record removals, courtesy of the findings from the first data validation run |  <a href="./data_quality/data-validation.md">Sweep 1</a>
   - ✔️ Update the ETL pipeline to include omitting the irrelevant locations
 - Add a data integrity assessment
-- Implement unit testing for utils & validation functions
+- ✔️ Implement unit testing for helper scripts, utils & data validation functions
 - CLI implementation
 
 <h4>Local postgres database record removals successful</h4>
